@@ -293,10 +293,11 @@ def main() -> _:
     * <- IO/print("p''(x)      = " + Polynomial/to_string(p_prime_prime) + "\n")
     return wrap(0)
 
-# Función auxiliar para obtener la longitud de una lista
-def List/length(list: List(T)) -> i24:
-  fold list:
-    case List/Nil:
-      return 0
-    case List/Cons:
-      return 1 + List/length(list.tail)
+# Función auxiliar para llenar una lista con ceros hasta n
+def fill_zeros(n: i24) -> List(i24):
+  bend i = 0, result = []:
+    when i < n:
+      result = List/Cons(0, result)
+      fork(i + 1, result)
+    else:
+      result
